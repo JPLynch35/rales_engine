@@ -32,7 +32,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'pry'
   gem 'simplecov', require: false
-  gem 'factory_bot_rails', require: false
+  gem 'factory_bot_rails'
   gem 'database_cleaner'
   gem 'shoulda-matchers'
   gem 'nyan-cat-formatter'
