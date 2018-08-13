@@ -46,4 +46,7 @@ namespace :import do
       pbar.increment
       Transaction.find_or_create_by(row.to_h)
   end
+
+  task all: [:customers, :invoice_items, :invoices, :items, :merchants, :transactions] do
+  end
 end
