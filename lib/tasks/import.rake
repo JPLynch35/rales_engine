@@ -1,3 +1,5 @@
+require 'csv'
+
 namespace :import do
   desc "Import customers csv data"
   task customers: :environment do
@@ -5,6 +7,7 @@ namespace :import do
     CSV.foreach('./data/customers.csv', { headers: true, header_converters: :symbol } ) do |row|
       pbar.increment
       Customer.find_or_create_by(row.to_h)
+    end
   end
 
   desc "Import invoice_items csv data"
@@ -13,6 +16,7 @@ namespace :import do
     CSV.foreach('./data/invoice_items.csv', { headers: true, header_converters: :symbol } ) do |row|
       pbar.increment
       InvoiceItem.find_or_create_by(row.to_h)
+    end
   end
 
   desc "Import invoices csv data"
@@ -21,6 +25,7 @@ namespace :import do
     CSV.foreach('./data/invoices.csv', { headers: true, header_converters: :symbol } ) do |row|
       pbar.increment
       Invoice.find_or_create_by(row.to_h)
+    end
   end
 
   desc "Import items csv data"
@@ -29,6 +34,7 @@ namespace :import do
     CSV.foreach('./data/items.csv', { headers: true, header_converters: :symbol } ) do |row|
       pbar.increment
       Item.find_or_create_by(row.to_h)
+    end
   end
 
   desc "Import merchants csv data"
@@ -37,6 +43,7 @@ namespace :import do
     CSV.foreach('./data/merchants.csv', { headers: true, header_converters: :symbol } ) do |row|
       pbar.increment
       Merchant.find_or_create_by(row.to_h)
+    end
   end
 
   desc "Import transactions csv data"
@@ -45,6 +52,7 @@ namespace :import do
     CSV.foreach('./data/transactions.csv', { headers: true, header_converters: :symbol } ) do |row|
       pbar.increment
       Transaction.find_or_create_by(row.to_h)
+    end
   end
 
   task all: [:customers, :invoice_items, :invoices, :items, :merchants, :transactions] do
