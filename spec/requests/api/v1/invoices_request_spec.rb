@@ -20,4 +20,18 @@ describe 'Invoices API' do
       expect(invoice).to have_key(:updated_at)
     end
   end
+
+  context 'GET /api/v1/invoices/:id.json' do
+    it 'returns the specified id invoice' do
+      create_list(:invoice, 6)
+
+      get '/api/v1/invoices/4.json'
+
+      expect(response).to be_successful
+
+      invoice = JSON.parse(response.body, symbolize_names: true)
+
+      expect(invoice.id).to eq(4)
+    end
+  end
 end
