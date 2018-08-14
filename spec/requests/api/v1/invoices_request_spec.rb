@@ -32,6 +32,11 @@ describe 'Invoices API' do
       invoice = JSON.parse(response.body, symbolize_names: true)
 
       expect(invoice[:id]).to eq(id)
+      expect(invoice).to have_key(:customer_id)
+      expect(invoice).to have_key(:merchant_id)
+      expect(invoice).to have_key(:status)
+      expect(invoice).to have_key(:created_at)
+      expect(invoice).to have_key(:updated_at)
     end
   end
 end
