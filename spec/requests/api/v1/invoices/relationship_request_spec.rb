@@ -107,8 +107,6 @@ describe 'Invoices API' do
 
       expect(merchant[:name]).to eq(merchant1.name)
       expect(merchant).to have_key(:name)
-      expect(merchant).to have_key(:created_at)
-      expect(merchant).to have_key(:updated_at)
     end
   end
 
