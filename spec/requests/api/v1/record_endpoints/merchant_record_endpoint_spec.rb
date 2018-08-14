@@ -12,8 +12,6 @@ describe "Merchants API" do
     expect(response).to be_successful
     expect(merchants.count).to eq(3)
     expect(merchant).to have_key(:name)
-    expect(merchant).to have_key(:created_at)
-    expect(merchant).to have_key(:updated_at)
   end
 
   it "returns a one specific merchant" do

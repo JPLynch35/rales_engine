@@ -20,8 +20,6 @@ describe 'Invoices API' do
       expect(invoice_items.first).to have_key(:invoice_id)
       expect(invoice_items.first).to have_key(:quantity)
       expect(invoice_items.first).to have_key(:unit_price)
-      expect(invoice_items.first).to have_key(:created_at)
-      expect(invoice_items.first).to have_key(:updated_at)
     end
   end
 
@@ -44,8 +42,6 @@ describe 'Invoices API' do
       expect(items.first).to have_key(:description)
       expect(items.first).to have_key(:unit_price)
       expect(items.first).to have_key(:merchant_id)
-      expect(items.first).to have_key(:created_at)
-      expect(items.first).to have_key(:updated_at)
     end
   end
 
@@ -68,8 +64,6 @@ describe 'Invoices API' do
       expect(items.first).to have_key(:description)
       expect(items.first).to have_key(:unit_price)
       expect(items.first).to have_key(:merchant_id)
-      expect(items.first).to have_key(:created_at)
-      expect(items.first).to have_key(:updated_at)
     end
   end
 
@@ -87,10 +81,7 @@ describe 'Invoices API' do
       expect(transactions.count).to eq(3)
       expect(transactions.first).to have_key(:invoice_id)
       expect(transactions.first).to have_key(:credit_card_number)
-      expect(transactions.first).to have_key(:credit_card_expiration_date)
       expect(transactions.first).to have_key(:result)
-      expect(transactions.first).to have_key(:created_at)
-      expect(transactions.first).to have_key(:updated_at)
     end
   end
 
@@ -124,8 +115,6 @@ describe 'Invoices API' do
       expect(customer[:first_name]).to eq(customer1.first_name)
       expect(customer).to have_key(:first_name)
       expect(customer).to have_key(:last_name)
-      expect(customer).to have_key(:created_at)
-      expect(customer).to have_key(:updated_at)
     end
   end
 end

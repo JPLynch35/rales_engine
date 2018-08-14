@@ -13,8 +13,6 @@ describe 'Merchants API' do
 
       expect(merchant[:id]).to eq(1).or eq(2).or eq(3)
       expect(merchant).to have_key(:name)
-      expect(merchant).to have_key(:created_at)
-      expect(merchant).to have_key(:updated_at)
     end
   end
 end
