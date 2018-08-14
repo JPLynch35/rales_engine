@@ -15,8 +15,6 @@ describe 'Invoices API' do
       expect(invoice).to have_key(:customer_id)
       expect(invoice).to have_key(:merchant_id)
       expect(invoice).to have_key(:status)
-      expect(invoice).to have_key(:created_at)
-      expect(invoice).to have_key(:updated_at)
     end
     it 'can find the invoice based on customer_id' do
       create_list(:customer, 10)
@@ -103,8 +101,6 @@ describe 'Invoices API' do
       expect(invoice).to have_key(:customer_id)
       expect(invoice).to have_key(:merchant_id)
       expect(invoice).to have_key(:status)
-      expect(invoice).to have_key(:created_at)
-      expect(invoice).to have_key(:updated_at)
     end
     it 'can find all invoices based on customer_id' do
       create_list(:customer, 10)
