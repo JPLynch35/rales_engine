@@ -23,15 +23,15 @@ describe 'Invoices API' do
 
   context 'GET /api/v1/invoices/:id.json' do
     it 'returns the specified id invoice' do
-      create_list(:invoice, 6)
+      id = create(:invoice).id
 
-      get '/api/v1/invoices/4.json'
+      get "/api/v1/invoices/#{id}.json"
 
       expect(response).to be_successful
 
       invoice = JSON.parse(response.body, symbolize_names: true)
 
-      expect(invoice.id).to eq(4)
+      expect(invoice[:id]).to eq(id)
     end
   end
 end
