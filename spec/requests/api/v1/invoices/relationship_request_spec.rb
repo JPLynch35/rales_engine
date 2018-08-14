@@ -14,14 +14,13 @@ describe 'Invoices API' do
       expect(response).to be_successful
 
       invoice_items = JSON.parse(response.body, symbolize_names: true)
-
       expect(invoice_items.count).to eq(2)
-      expect(invoice_items.first).to have_key(:item_id)
-      expect(invoice_items.first).to have_key(:invoice_id)
-      expect(invoice_items.first).to have_key(:quantity)
-      expect(invoice_items.first).to have_key(:unit_price)
-      expect(invoice_items.first).to have_key(:created_at)
-      expect(invoice_items.first).to have_key(:updated_at)
+
+      invoice_item = invoice_items.first
+      expect(invoice_item).to have_key(:item_id)
+      expect(invoice_item).to have_key(:invoice_id)
+      expect(invoice_item).to have_key(:quantity)
+      expect(invoice_item).to have_key(:unit_price)
     end
   end
 
@@ -38,14 +37,13 @@ describe 'Invoices API' do
       expect(response).to be_successful
 
       items = JSON.parse(response.body, symbolize_names: true)
-
       expect(items.count).to eq(2)
-      expect(items.first).to have_key(:name)
-      expect(items.first).to have_key(:description)
-      expect(items.first).to have_key(:unit_price)
-      expect(items.first).to have_key(:merchant_id)
-      expect(items.first).to have_key(:created_at)
-      expect(items.first).to have_key(:updated_at)
+
+      item = items.first
+      expect(item).to have_key(:name)
+      expect(item).to have_key(:description)
+      expect(item).to have_key(:unit_price)
+      expect(item).to have_key(:merchant_id)
     end
   end
 end
