@@ -12,12 +12,4 @@ describe InvoiceItem, type: :model do
     it { should belong_to(:invoice) }
     it { should belong_to(:item) }
   end
-
-  describe 'instance methods' do
-    
-  end
-
-  describe 'class methods' do
-    
-  end
 end
