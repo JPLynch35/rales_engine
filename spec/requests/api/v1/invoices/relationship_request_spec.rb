@@ -14,12 +14,13 @@ describe 'Invoices API' do
       expect(response).to be_successful
 
       invoice_items = JSON.parse(response.body, symbolize_names: true)
-
       expect(invoice_items.count).to eq(2)
-      expect(invoice_items.first).to have_key(:item_id)
-      expect(invoice_items.first).to have_key(:invoice_id)
-      expect(invoice_items.first).to have_key(:quantity)
-      expect(invoice_items.first).to have_key(:unit_price)
+
+      invoice_item = invoice_items.first
+      expect(invoice_item).to have_key(:item_id)
+      expect(invoice_item).to have_key(:invoice_id)
+      expect(invoice_item).to have_key(:quantity)
+      expect(invoice_item).to have_key(:unit_price)
     end
   end
 
@@ -36,34 +37,13 @@ describe 'Invoices API' do
       expect(response).to be_successful
 
       items = JSON.parse(response.body, symbolize_names: true)
-
       expect(items.count).to eq(2)
-      expect(items.first).to have_key(:name)
-      expect(items.first).to have_key(:description)
-      expect(items.first).to have_key(:unit_price)
-      expect(items.first).to have_key(:merchant_id)
-    end
-  end
 
-  context 'GET /api/v1/invoices/:id/items' do
-    it 'returns a collection of associated items' do
-      item1 = create(:item)
-      item2 = create(:item)
-      invoice = create(:invoice)
-      create(:invoice_item, item: item1, invoice: invoice)
-      create(:invoice_item, item: item2, invoice: invoice)
-
-      get "/api/v1/invoices/#{invoice.id}/items"
-
-      expect(response).to be_successful
-
-      items = JSON.parse(response.body, symbolize_names: true)
-
-      expect(items.count).to eq(2)
-      expect(items.first).to have_key(:name)
-      expect(items.first).to have_key(:description)
-      expect(items.first).to have_key(:unit_price)
-      expect(items.first).to have_key(:merchant_id)
+      item = items.first
+      expect(item).to have_key(:name)
+      expect(item).to have_key(:description)
+      expect(item).to have_key(:unit_price)
+      expect(item).to have_key(:merchant_id)
     end
   end
 
@@ -77,11 +57,12 @@ describe 'Invoices API' do
       expect(response).to be_successful
 
       transactions = JSON.parse(response.body, symbolize_names: true)
-
       expect(transactions.count).to eq(3)
-      expect(transactions.first).to have_key(:invoice_id)
-      expect(transactions.first).to have_key(:credit_card_number)
-      expect(transactions.first).to have_key(:result)
+
+      transaction = transactions.first
+      expect(transaction).to have_key(:invoice_id)
+      expect(transaction).to have_key(:credit_card_number)
+      expect(transaction).to have_key(:result)
     end
   end
 
