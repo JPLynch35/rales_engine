@@ -98,89 +98,105 @@ describe 'Items API' do
     end
   end
 
-  # context 'GET /api/v1/items/find_all?parameters' do
-  #   it 'can find all items based on id' do
-  #     create_list(:item, 6)
+  context 'GET /api/v1/items/find_all?parameters' do
+    it 'can find all items based on id' do
+      create_list(:item, 6)
 
-  #     get '/api/v1/items/find_all?id=3'
+      get '/api/v1/items/find_all?id=3'
 
-  #     expect(response).to be_successful
+      expect(response).to be_successful
 
-  #     items = JSON.parse(response.body, symbolize_names: true)
-  #     item = items.first
+      items = JSON.parse(response.body, symbolize_names: true)
+      item = items.first
 
-  #     expect(items.count).to eq(1)
-  #     expect(item[:id]).to eq(3)
-  #     expect(item).to have_key(:customer_id)
-  #     expect(item).to have_key(:merchant_id)
-  #     expect(item).to have_key(:status)
-  #   end
-  #   it 'can find all items based on customer_id' do
-  #     create_list(:customer, 10)
-  #     create(:item, customer_id: 4)
-  #     create(:item, customer_id: 2)
-  #     create(:item, customer_id: 4)
+      expect(items.count).to eq(1)
+      expect(item[:id]).to eq(3)
+      expect(item).to have_key(:name)
+      expect(item).to have_key(:description)
+      expect(item).to have_key(:unit_price)
+      expect(item).to have_key(:merchant_id)
+    end
+    it 'can find all items based on name' do
+      create_list(:item, 5)
+      create(:item, name: 'suitcase')
+      create(:item, name: 'suitcase')
 
-  #     get '/api/v1/items/find_all?customer_id=4'
+      get '/api/v1/items/find_all?name=suitcase'
 
-  #     expect(response).to be_successful
+      expect(response).to be_successful
 
-  #     items = JSON.parse(response.body, symbolize_names: true)
+      items = JSON.parse(response.body, symbolize_names: true)
 
-  #     expect(items.count).to eq(2)
-  #   end
-  #   it 'can find all items based on merchant_id' do
-  #     create_list(:merchant, 10)
-  #     create(:item, merchant_id: 4)
-  #     create(:item, merchant_id: 2)
-  #     create(:item, merchant_id: 4)
+      expect(items.count).to eq(2)
+    end
+    it 'can find all items based on description' do
+      create_list(:item, 5)
+      create(:item, description: 'super heavy and large')
+      create(:item, description: 'super heavy and large')
 
-  #     get '/api/v1/items/find_all?merchant_id=4'
+      get '/api/v1/items/find_all?description=super heavy and large'
 
-  #     expect(response).to be_successful
+      expect(response).to be_successful
 
-  #     items = JSON.parse(response.body, symbolize_names: true)
+      items = JSON.parse(response.body, symbolize_names: true)
 
-  #     expect(items.count).to eq(2)
-  #   end
-  #   it 'can find all items based on status' do
-  #     create(:item, status: 'shipped')
-  #     create(:item, status: 'returned')
-  #     create(:item, status: 'returned')
+      expect(items.count).to eq(2)
+    end
+    it 'can find all items based on unit_price' do
+      create(:item, unit_price: '800')
+      create(:item, unit_price: '800')
+      create(:item, unit_price: '800')
+      create_list(:item, 5)
 
-  #     get '/api/v1/items/find_all?status=returned'
+      get '/api/v1/items/find_all?unit_price=800'
 
-  #     expect(response).to be_successful
+      expect(response).to be_successful
 
-  #     items = JSON.parse(response.body, symbolize_names: true)
+      items = JSON.parse(response.body, symbolize_names: true)
 
-  #     expect(items.count).to eq(2)
-  #   end
-  #   it 'can find all items based on created_at' do
-  #     create(:item, created_at: '2012-01-12 09:54:09 UTC')
-  #     create(:item, created_at: '2012-03-25 09:54:09 UTC')
-  #     create(:item, created_at: '2012-01-12 09:54:09 UTC')
+      expect(items.count).to eq(3)
+    end
+    it 'can find all items based on merchant_id' do
+      create(:merchant)
+      merchant = create(:merchant)
+      create(:item, merchant: merchant)
+      create(:item, merchant: merchant)
+      create(:item, merchant: merchant)
+      create_list(:item, 5)
 
-  #     get '/api/v1/items/find_all?created_at=2012-01-12 09:54:09 UTC'
+      get '/api/v1/items/find_all?merchant_id=2'
 
-  #     expect(response).to be_successful
+      expect(response).to be_successful
 
-  #     items = JSON.parse(response.body, symbolize_names: true)
+      items = JSON.parse(response.body, symbolize_names: true)
 
-  #     expect(items.count).to eq(2)
-  #   end
-  #   it 'can find all items based on updated_at' do
-  #     create(:item, updated_at: '2012-01-12 09:54:09 UTC')
-  #     create(:item, updated_at: '2012-03-25 09:54:09 UTC')
-  #     create(:item, updated_at: '2012-01-12 09:54:09 UTC')
+      expect(items.count).to eq(3)
+    end
+    it 'can find all items based on created_at' do
+      create(:item, created_at: '2012-01-12 09:54:09 UTC')
+      create(:item, created_at: '2012-03-25 09:54:09 UTC')
+      create(:item, created_at: '2012-01-12 09:54:09 UTC')
 
-  #     get '/api/v1/items/find_all?updated_at=2012-01-12 09:54:09 UTC'
+      get '/api/v1/items/find_all?created_at=2012-01-12 09:54:09 UTC'
 
-  #     expect(response).to be_successful
+      expect(response).to be_successful
 
-  #     items = JSON.parse(response.body, symbolize_names: true)
+      items = JSON.parse(response.body, symbolize_names: true)
 
-  #     expect(items.count).to eq(2)
-  #   end
-  # end
+      expect(items.count).to eq(2)
+    end
+    it 'can find all items based on updated_at' do
+      create(:item, updated_at: '2012-01-12 09:54:09 UTC')
+      create(:item, updated_at: '2012-03-25 09:54:09 UTC')
+      create(:item, updated_at: '2012-01-12 09:54:09 UTC')
+
+      get '/api/v1/items/find_all?updated_at=2012-01-12 09:54:09 UTC'
+
+      expect(response).to be_successful
+
+      items = JSON.parse(response.body, symbolize_names: true)
+
+      expect(items.count).to eq(2)
+    end
+  end
 end
