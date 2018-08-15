@@ -8,10 +8,10 @@ Rails.application.routes.draw do
         get 'random', to: 'random#show'
       end
       resources :invoices, only: [:index, :show] do
+        resources :items, only: [:index]
+        get 'merchant', to: 'merchants#index'
         get 'invoice_items', to: 'invoices/invoice_items#index'
-        get 'items', to: 'invoices/items#index'
         get 'transactions', to: 'invoices/transactions#index'
-        get 'merchant', to: 'invoices/merchant#index'
         get 'customer', to: 'invoices/customer#index'
       end
 
