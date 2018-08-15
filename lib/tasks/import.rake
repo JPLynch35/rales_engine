@@ -53,6 +53,7 @@ namespace :import do
       pbar.increment
       Transaction.find_or_create_by(row.to_h)
     end
+    puts Transaction.count
   end
 
   task all: [:customers, :merchants, :invoices, :items, :invoice_items, :transactions] do
