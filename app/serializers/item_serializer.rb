@@ -1,3 +1,8 @@
 class ItemSerializer < ActiveModel::Serializer
-  attributes :id, :name, :description, :unit_price, :merchant_id
+  include ActionView::Helpers::NumberHelper
+  attributes :id, :name, :description, :merchant_id, :unit_price
+
+  def unit_price
+    number_to_currency(object.unit_price / 100.00, unit: '')
+  end
 end

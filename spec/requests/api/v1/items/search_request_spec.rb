@@ -47,14 +47,14 @@ describe 'Items API' do
       create_list(:item, 5)
       create(:item, unit_price: 800)
 
-      get '/api/v1/items/find?unit_price=800'
+      get '/api/v1/items/find?unit_price=8.00'
 
       expect(response).to be_successful
 
       item = JSON.parse(response.body, symbolize_names: true)
 
       expect(item[:id]).to eq(6)
-      expect(item[:unit_price]).to eq(800)
+      expect(item[:unit_price]).to eq('8.00')
     end
     it 'can find the item based on merchant_id' do
       merchant = create(:merchant)
@@ -143,9 +143,9 @@ describe 'Items API' do
       expect(items.count).to eq(2)
     end
     it 'can find all items based on unit_price' do
-      create(:item, unit_price: '800')
-      create(:item, unit_price: '800')
-      create(:item, unit_price: '800')
+      create(:item, unit_price: 800)
+      create(:item, unit_price: 800)
+      create(:item, unit_price: 800)
       create_list(:item, 5)
 
       get '/api/v1/items/find_all?unit_price=800'
