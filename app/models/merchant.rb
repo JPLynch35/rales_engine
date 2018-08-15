@@ -3,4 +3,6 @@ class Merchant < ApplicationRecord
   has_many :items
   has_many :invoices
   has_many :customers, through: :invoices
+
+  default_scope -> {order(id: :asc)}
 end
