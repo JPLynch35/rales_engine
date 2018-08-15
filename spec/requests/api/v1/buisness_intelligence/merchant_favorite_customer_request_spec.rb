@@ -1,17 +1,8 @@
 require 'rails_helper'
-describe Merchant, type: :model do
-  describe 'validations' do
-    it { should validate_presence_of(:name) }
-  end
 
-  describe 'relationships' do
-    it { should have_many(:items) }
-    it { should have_many(:invoices) }
-    it { should have_many(:customers).through(:invoices) }
-  end
-
-  describe 'class methods' do
-    it 'can find the customer with the most number of successful transactions for a merchant' do
+describe 'Business Intelligence API' do
+  context 'GET /api/v1/merchants/:id/favorite_customer' do
+    it 'returns the customer who has conducted the most total number of successful transactions' do
       merchant1 = create(:merchant)
       customer1 = create(:customer)
       customer2 = create(:customer, first_name: 'Bill')
@@ -25,7 +16,14 @@ describe Merchant, type: :model do
       transaction3 = create(:transaction, invoice: invoice2, result: 'success')
       transaction4 = create(:transaction, invoice: invoice3, result: 'success')
 
-      expect(Customer.fav_customer(merchant1.id)).to eq(customer2)
+      get "/api/v1/merchants/#{merchant1.id}/favorite_customer"
+
+      expect(response).to be_successful
+
+      fav_customer = JSON.parse(response.body, symbolize_names: true)
+
+      expect(fav_customer[:first_name]).to eq('Bill')
+      expect(fav_customer[:id]).to eq(2)
     end
   end
 end
