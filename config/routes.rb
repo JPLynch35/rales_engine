@@ -9,10 +9,10 @@ Rails.application.routes.draw do
       end
       resources :invoices, only: [:index, :show] do
         resources :items, only: [:index]
-        get 'merchant', to: 'merchants#index'
-        get 'invoice_items', to: 'invoices/invoice_items#index'
+        resources :invoice_items, only: [:index]
+        get 'merchant', to: 'merchants#show'
         get 'transactions', to: 'invoices/transactions#index'
-        get 'customer', to: 'invoices/customer#index'
+        get 'customer', to: 'invoices/customer#show'
       end
 
       namespace :merchants do
@@ -30,7 +30,10 @@ Rails.application.routes.draw do
         get 'find_all', to: 'search#index'
         get 'random', to: 'random#show'
       end
-      resources :items, only: [:index, :show]
+      resources :items, only: [:index, :show] do
+        resources :invoice_items, only: [:index]
+        get 'merchant', to: 'merchants#show'
+      end
     end
   end
 end
