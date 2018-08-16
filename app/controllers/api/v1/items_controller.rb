@@ -10,6 +10,10 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def show
-    render json: Item.find(params[:id])
+    if params[:invoice_item_id]
+      render json: InvoiceItem.includes(:item).find(params[:invoice_item_id]).item
+    else
+      render json: Item.find(params[:id])
+    end
   end
 end
