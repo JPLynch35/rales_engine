@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Business Intelligence API' do
   context 'GET /api/v1/merchants/revenue?date=x' do
-    it 'returns the total revenue for date x across all merchants' do
+    xit 'returns the total revenue for date x across all merchants' do
       merchant1 = create(:merchant)
       merchant2 = create(:merchant)
       merchant3 = create(:merchant)
