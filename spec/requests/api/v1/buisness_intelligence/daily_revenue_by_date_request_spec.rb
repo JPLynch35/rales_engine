@@ -1,20 +1,8 @@
 require 'rails_helper'
 
-describe InvoiceItem, type: :model do
-  describe 'validations' do
-    it { should validate_presence_of(:item_id) }
-    it { should validate_presence_of(:invoice_id) }
-    it { should validate_presence_of(:quantity) }
-    it { should validate_presence_of(:unit_price) }
-  end
-
-  describe 'relationships' do
-    it { should belong_to(:invoice) }
-    it { should belong_to(:item) }
-  end
-
-  describe 'class methods' do
-    it 'can calculate total daily revenue across all merchants' do
+describe 'Business Intelligence API' do
+  context 'GET /api/v1/merchants/revenue?date=x' do
+    it 'returns the total revenue for date x across all merchants' do
       merchant1 = create(:merchant)
       merchant2 = create(:merchant)
       merchant3 = create(:merchant)
@@ -31,7 +19,13 @@ describe InvoiceItem, type: :model do
       transaction3 = create(:transaction, invoice: invoice2, result: 'success')
       transaction4 = create(:transaction, invoice: invoice3, result: 'success')
 
-      expect(InvoiceItem.daily_revenue('12-12-2016')).to eq('15.00')
+      get '/api/v1/merchants/revenue?date=12-12-2016'
+
+      expect(response).to be_successful
+
+      revenue = JSON.parse(response.body)
+
+      expect(revenue['total_revenue']).to eq('15.00')
     end
   end
 end
