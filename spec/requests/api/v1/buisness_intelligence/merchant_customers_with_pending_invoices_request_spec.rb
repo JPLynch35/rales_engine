@@ -24,8 +24,8 @@ describe 'Business Intelligence API' do
       customers = JSON.parse(response.body, symbolize_names: true)
 
       expect(customers.count).to eq(2)
-      expect(customers.first[:first_name]).to eq('Jill')
-      expect(customers.second[:first_name]).to eq('Jen')
+      expect(customers.first[:first_name]).to eq('Jill').or eq('Jen')
+      expect(customers.second[:first_name]).to eq('Jen').or eq('Jill')
     end
   end
 end
