@@ -14,24 +14,24 @@ describe InvoiceItem, type: :model do
   end
 
   describe 'class methods' do
-    xit 'can calculate total daily revenue across all merchants' do
+    it 'can calculate total daily revenue across all merchants' do
       merchant1 = create(:merchant)
       merchant2 = create(:merchant)
       merchant3 = create(:merchant)
-      invoice1 = create(:invoice)
-      invoice2 = create(:invoice)
-      invoice3 = create(:invoice)
-      invoice4 = create(:invoice)
-      invoice_item1 = create(:invoice_item, invoice: invoice1, quantity: 1, unit_price: 500, created_at: '12-12-2016 14:54:09 UTC')
-      invoice_item2 = create(:invoice_item, invoice: invoice2, quantity: 2, unit_price: 300, created_at: '12-12-2016 14:54:09 UTC')
-      invoice_item3 = create(:invoice_item, invoice: invoice3, quantity: 2, unit_price: 100, created_at: '12-20-2016 14:54:09 UTC')
-      invoice_item4 = create(:invoice_item, invoice: invoice4, quantity: 1, unit_price: 1000, created_at: '12-12-2016 14:54:09 UTC')
+      invoice1 = create(:invoice, created_at: '2012-03-27 14:54:09 UTC')
+      invoice2 = create(:invoice, created_at: '2012-03-27 14:54:09 UTC')
+      invoice3 = create(:invoice, created_at: '2012-07-12 14:54:09 UTC')
+      invoice4 = create(:invoice, created_at: '2012-03-27 14:54:09 UTC')
+      invoice_item1 = create(:invoice_item, invoice: invoice1, quantity: 1, unit_price: 500, created_at: '2012-03-27 14:54:09 UTC')
+      invoice_item2 = create(:invoice_item, invoice: invoice2, quantity: 2, unit_price: 300, created_at: '2012-03-27 14:54:09 UTC')
+      invoice_item3 = create(:invoice_item, invoice: invoice3, quantity: 2, unit_price: 100, created_at: '2012-07-12 14:54:09 UTC')
+      invoice_item4 = create(:invoice_item, invoice: invoice4, quantity: 1, unit_price: 1000, created_at: '2012-03-27 14:54:09 UTC')
       transaction1 = create(:transaction, invoice: invoice1, result: 'failed')
       transaction2 = create(:transaction, invoice: invoice2, result: 'success')
       transaction3 = create(:transaction, invoice: invoice2, result: 'success')
       transaction4 = create(:transaction, invoice: invoice3, result: 'success')
 
-      expect(InvoiceItem.daily_revenue('12-12-2016')).to eq('15.00')
+      expect(InvoiceItem.daily_revenue('2012-03-27')).to eq(1200)
     end
   end
 end
