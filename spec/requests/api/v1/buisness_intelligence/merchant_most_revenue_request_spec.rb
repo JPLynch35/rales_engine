@@ -1,17 +1,8 @@
 require 'rails_helper'
-describe Merchant, type: :model do
-  describe 'validations' do
-    it { should validate_presence_of(:name) }
-  end
 
-  describe 'relationships' do
-    it { should have_many(:items) }
-    it { should have_many(:invoices) }
-    it { should have_many(:customers).through(:invoices) }
-  end
-
-  describe 'class methods' do
-    it 'returns the top x merchants ranked by total revenue' do
+describe 'Business Intelligence API' do
+  context 'GET /api/v1/merchants/most_revenue?quantity=x' do
+    it 'returns the top x merchants with the most revenue' do
       merchant1 = create(:merchant, name: 'Bill')
       merchant2 = create(:merchant, name: 'Bob')
       merchant3 = create(:merchant, name: 'Ben')
@@ -33,8 +24,24 @@ describe Merchant, type: :model do
       transaction3 = create(:transaction, invoice: invoice3, result: 'success')
       transaction4 = create(:transaction, invoice: invoice4, result: 'success')
 
-      expect(Merchant.most_revenue(2)).to eq([merchant3, merchant4])
-      expect(Merchant.most_revenue(1)).to eq([merchant3])
+      get "/api/v1/merchants/most_revenue?quantity=2"
+
+      expect(response).to be_successful
+
+      merchants = JSON.parse(response.body, symbolize_names: true)
+
+      expect(merchants.count).to eq(2)
+      expect(merchants.first[:name]).to eq('Ben')
+      expect(merchants.second[:name]).to eq('Tony')
+
+      get "/api/v1/merchants/most_revenue?quantity=1"
+
+      expect(response).to be_successful
+
+      merchants = JSON.parse(response.body, symbolize_names: true)
+
+      expect(merchants.count).to eq(1)
+      expect(merchants.first[:name]).to eq('Ben')
     end
   end
 end
