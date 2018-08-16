@@ -6,8 +6,9 @@ class InvoiceItem < ApplicationRecord
   default_scope -> {order(id: :asc)}
 
   def self.daily_revenue(date)
-    # merge(Transaction.unscoped.success)
-    where('invoice_items.created_at = ?', date.to_datetime)
+    joins(invoice: :transactions)
+    .merge(Transaction.unscoped.success)
+    .where('invoices.created_at::date = ?', date)
     .pluck('invoice_items.quantity * invoice_items.unit_price')
     .sum
   end
