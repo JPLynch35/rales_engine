@@ -17,4 +17,18 @@ class Customer < ApplicationRecord
     .limit(1)
     .first
   end
+
+  def self.pending_invoices(merch_id)
+    find_by_sql(
+      "SELECT customers.* FROM customers
+      INNER JOIN invoices ON customers.id = invoices.customer_id
+      WHERE invoices.merchant_id = #{merch_id}
+      EXCEPT
+      SELECT customers.* FROM customers
+      INNER JOIN invoices ON customers.id = invoices.customer_id
+      INNER JOIN transactions ON invoices.id = transactions.invoice_id
+      WHERE invoices.merchant_id = #{merch_id} AND transactions.result = 'success'
+      ;"
+    )
+  end
 end

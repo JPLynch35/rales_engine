@@ -26,6 +26,7 @@ Rails.application.routes.draw do
         resources :invoices, only: [:index]
         resources :items, only: [:index]
         get 'favorite_customer', to: 'merchants/favorite_customer#show'
+        get 'customers_with_pending_invoices', to: 'merchants/customers_pending_invoices#index'
       end
 
       namespace :items do
