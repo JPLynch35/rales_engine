@@ -34,7 +34,8 @@ To run the spec harness(requires locally hosted server), navigate your terminal 
 `bundle exec rake`  
 
 #### Example URLs
-To run a locally hosted server, run the command `rails s`.  
+To run a locally hosted server, use the command:  
+`rails s`  
 Within your browser, you can now navigate to the following URLs to see the JSON responses.  
 
 * Returns a collection of items associated with that merchant:  
