@@ -17,10 +17,11 @@ Technology:
 
 #### Set Up
 Clone the repository onto your local machine.  
-Open the project folder within your terminal and use the following commands:  
-* `rake db:{create,migrate}` This creates the database and migrates the tables.
+Open the project folder within your terminal (`cd rales_engine`)and use the following commands:  
+* `bundle install` This installs all the required gems.
+* `rake db:{drop,create,migrate}` This creates the database and migrates the tables.
 * `rake import:all` This imports the data from the csv files into your local database.
 
 #### Testing
 To run the local test suite, use the command `rspec`.  
-To run the spec harness, naviaget your temrinal to the spec harness folder and use the command `bundle exec rake`.
+To run the spec harness, navigate your terminal to the spec harness folder and use the command `bundle exec rake`.
