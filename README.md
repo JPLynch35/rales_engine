@@ -30,11 +30,11 @@ Open the project folder within your terminal (`cd rales_engine`)and use the foll
 #### Testing
 To run the local test suite, use the command:  
 `rspec`  
-To run the spec harness, navigate your terminal to the spec harness folder and use the command:  
-`bundle exec rake`
+To run the spec harness(required locally hosted server), navigate your terminal to the spec harness folder and use the command:  
+`bundle exec rake`  
 
 #### Example URLs
-To run a local honest, run the command `rails s`.  
+To run a locally hosted server, run the command `rails s`.  
 Within your browser, you can now navigate to the following URLs to see the JSON responses.  
 
 * Returns a collection of items associated with that merchant:  
