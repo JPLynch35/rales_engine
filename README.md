@@ -30,7 +30,7 @@ Open the project folder within your terminal (`cd rales_engine`)and use the foll
 #### Testing
 To run the local test suite, use the command:  
 `rspec`  
-To run the spec harness(required locally hosted server), navigate your terminal to the spec harness folder and use the command:  
+To run the spec harness(requires locally hosted server), navigate your terminal to the spec harness folder and use the command:  
 `bundle exec rake`  
 
 #### Example URLs
