@@ -18,9 +18,12 @@ Technology:
 #### Set Up
 Clone the repository onto your local machine.  
 Open the project folder within your terminal (`cd rales_engine`)and use the following commands:  
-* `bundle install` This installs all the required gems.
-* `rake db:{drop,create,migrate}` This creates the database and migrates the tables.
-* `rake import:all` This imports the data from the CSV files into your local database.
+* Installs all the required gems:  
+`bundle install` 
+* Creates the database and migrates the tables:  
+`rake db:{drop,create,migrate}`  
+* Imports the data from the CSV files into your local database:  
+`rake import:all`
 
 #### Testing
 To run the local test suite, use the command `rspec`.  
