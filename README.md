@@ -34,18 +34,18 @@ To run a local honest, run the command `rails s`.
 Within your browser, you can now navigate to the following URLs to see the JSON responses.  
 
 * Returns a collection of items associated with that merchant:  
-GET /api/v1/merchants/:id/items  
+`/api/v1/merchants/:id/items`  
 * Returns a collection of invoices associated with that merchant from their known orders:  
-GET /api/v1/merchants/:id/invoices  
+`/api/v1/merchants/:id/invoices`  
 * Returns a collection of associated transactions:  
-GET /api/v1/invoices/:id/transactions  
+`/api/v1/invoices/:id/transactions`  
 * returns a collection of associated invoice items:  
-GET /api/v1/invoices/:id/invoice_items  
+`/api/v1/invoices/:id/invoice_items`  
 * Returns a collection of associated items:  
-GET /api/v1/invoices/:id/items  
+`/api/v1/invoices/:id/items`  
 * Returns the top x merchants ranked by total revenue:  
-GET /api/v1/merchants/most_revenue?quantity=x  
+`/api/v1/merchants/most_revenue?quantity=x`  
 * Returns the customer who has conducted the most total number of successful transactions:  
-GET /api/v1/merchants/:id/favorite_customer
+`/api/v1/merchants/:id/favorite_customer`
 * Returns a collection of customers which have pending (unpaid) invoices:  
-GET /api/v1/merchants/:id/customers_with_pending_invoices  
+`/api/v1/merchants/:id/customers_with_pending_invoices`  
