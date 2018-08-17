@@ -17,7 +17,7 @@ Technology:
 
 #### Set Up
 Clone the repository onto your local machine with the following command:  
-`git clone https://github.com/JPLynch35/rales_engine.git`  
+* `git clone https://github.com/JPLynch35/rales_engine.git`  
 Open the project folder within your terminal (`cd rales_engine`)and use the following commands:  
 * Installs all the required gems:  
 `bundle install` 
