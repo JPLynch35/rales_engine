@@ -16,8 +16,9 @@ Technology:
 * Rails 5.1.6
 
 #### Set Up
-Clone the repository onto your local machine with the following command:  
-* `git clone https://github.com/JPLynch35/rales_engine.git` 
+Clone the repository onto your local machine, use the command:  
+`git clone https://github.com/JPLynch35/rales_engine.git`  
+
 Open the project folder within your terminal (`cd rales_engine`)and use the following commands:  
 * Installs all the required gems:  
 `bundle install` 
@@ -27,8 +28,10 @@ Open the project folder within your terminal (`cd rales_engine`)and use the foll
 `rake import:all`
 
 #### Testing
-To run the local test suite, use the command `rspec`.  
-To run the spec harness, navigate your terminal to the spec harness folder and use the command `bundle exec rake`.
+To run the local test suite, use the command:  
+`rspec`  
+To run the spec harness, navigate your terminal to the spec harness folder and use the command:  
+`bundle exec rake`
 
 #### Example URLs
 To run a local honest, run the command `rails s`.  
