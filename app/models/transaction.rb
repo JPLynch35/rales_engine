@@ -4,5 +4,4 @@ class Transaction < ApplicationRecord
 
   default_scope -> {order(id: :asc)}
   scope :success, -> { where(result: 'success')}
-  scope :failed, -> { where(result: 'failed')}
 end

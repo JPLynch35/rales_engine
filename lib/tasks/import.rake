@@ -8,6 +8,7 @@ namespace :import do
       pbar.increment
       Customer.find_or_create_by(row.to_h)
     end
+    puts "Customers Imported: #{Customer.all.count}"
   end
 
   desc "Import merchants csv data"
@@ -17,6 +18,7 @@ namespace :import do
       pbar.increment
       Merchant.find_or_create_by(row.to_h)
     end
+    puts "Merchants Imported: #{Merchant.all.count}"
   end
 
   desc "Import invoices csv data"
@@ -26,6 +28,7 @@ namespace :import do
       pbar.increment
       Invoice.find_or_create_by(row.to_h)
     end
+    puts "Invoices Imported: #{Invoice.all.count}"
   end
 
   desc "Import items csv data"
@@ -35,6 +38,7 @@ namespace :import do
       pbar.increment
       Item.find_or_create_by(row.to_h)
     end
+    puts "Items Imported: #{Item.all.count}"
   end
 
   desc "Import invoice_items csv data"
@@ -44,6 +48,7 @@ namespace :import do
       pbar.increment
       InvoiceItem.find_or_create_by(row.to_h)
     end
+    puts "Invoice Items Imported: #{InvoiceItem.all.count}"
   end
 
   desc "Import transactions csv data"
@@ -53,6 +58,7 @@ namespace :import do
       pbar.increment
       Transaction.find_or_create_by(row.to_h)
     end
+    puts "Transactions Imported: #{Transaction.all.count}"
   end
 
   task all: [:customers, :merchants, :invoices, :items, :invoice_items, :transactions] do
